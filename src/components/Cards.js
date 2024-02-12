@@ -11,28 +11,34 @@ const Cards = () => {
     console.log("selected user:", selectedUser.length);
   }
   return (
-    <>
+    <section className="w-full border-black">
       {selectedUser.length === 0 ? (
-        <div className="flex flex-wrap">
-          {users?.map((card) => (
-            <div key={card.id} className="p-2 border border-black">
-              {card?.title}
+        <div className="flex flex-wrap w-full m-auto items-center justify-center">
+          {users?.map((card, index) => (
+            <div
+              key={card.id}
+              className="p-4 border border-gray-300 rounded-lg shadow-md bg-white mr-4 h-32 w-32 text-center font-bold mb-4"
+            >
+              Card {index + 1}
             </div>
           ))}
         </div>
       ) : (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-center items-center m-auto">
           {users[selectedUser - 1]?.access.map(
             (card, index) =>
               card && (
-                <div key={card.id} className="p-2 border border-black">
-                  {index + 1}
+                <div
+                  key={index}
+                  className="p-4 border border-gray-300 rounded-lg shadow-md bg-white h-32 w-32 text-center mr-4 mb-4 font-bold"
+                >
+                  Card {index + 1}
                 </div>
               )
           )}
         </div>
       )}
-    </>
+    </section>
   );
 };
 
