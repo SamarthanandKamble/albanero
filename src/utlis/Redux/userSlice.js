@@ -8,6 +8,8 @@ export const userSlice = createSlice({
       { id: 2, name: "User 2", access: [false, true, false, true] },
       { id: 3, name: "User 3", access: [true, true, false, true] },
       { id: 4, name: "User 4", access: [false, true, true, true] },
+      { id: 5, name: "User 5", access: [false, false, true, true] },
+      { id: 6, name: "User 6", access: [false, true, true, false] },
     ],
 
     selectedUser: "",
@@ -23,8 +25,15 @@ export const userSlice = createSlice({
     updateSelectedUser: (state, action) => {
       state.selectedUser = action.payload;
     },
+    updateTheLocalUsersChanges: (state, action) => {
+      state.users = action.payload;
+    },
   },
 });
 
-export const { updateUserAccess, updateSelectedUser } = userSlice.actions;
+export const {
+  updateUserAccess,
+  updateSelectedUser,
+  updateTheLocalUsersChanges,
+} = userSlice.actions;
 export default userSlice.reducer;

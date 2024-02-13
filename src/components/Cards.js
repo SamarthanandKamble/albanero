@@ -7,21 +7,23 @@ const Cards = () => {
     console.log("Card rendered");
   }, [selectedUser]);
 
-  if (!selectedUser) {
-    console.log("selected user:", selectedUser.length);
-  }
   return (
     <section className="w-full border-black">
       {selectedUser.length === 0 ? (
+        // Initially will render all the cards
         <div className="flex flex-wrap w-full m-auto items-center justify-center">
-          {users?.map((card, index) => (
-            <div
-              key={card.id}
-              className="p-4 border border-gray-300 rounded-lg shadow-md bg-white mr-4 h-32 w-32 text-center font-bold mb-4"
-            >
-              Card {index + 1}
-            </div>
-          ))}
+          {users?.map((card, index) =>
+            index <= 3 ? (
+              <div
+                key={card.id}
+                className="p-4 border border-gray-300 rounded-lg shadow-md bg-white mr-4 h-32 w-32 text-center font-bold mb-4"
+              >
+                Card {index + 1}
+              </div>
+            ) : (
+              ""
+            )
+          )}
         </div>
       ) : (
         <div className="flex flex-wrap justify-center items-center m-auto">
