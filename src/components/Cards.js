@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 const Cards = () => {
   const users = useSelector((state) => state.users?.users);
   const selectedUser = useSelector((state) => state.users?.selectedUser);
-  useEffect(() => {
-    console.log("Card rendered");
-  }, [selectedUser]);
 
   return (
     <section className="w-full border-black">
