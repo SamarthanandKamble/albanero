@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const userSlice = createSlice({
-  name: " ",
+  name: "users",
   initialState: {
     users: [
       { id: 1, name: "User 1", access: [true, false, true, false] },
@@ -27,6 +27,7 @@ export const userSlice = createSlice({
     },
     updateTheLocalUsersChanges: (state, action) => {
       state.users = action.payload;
+      localStorage.setItem("table", JSON.stringify(state.users));
     },
   },
 });
@@ -35,5 +36,6 @@ export const {
   updateUserAccess,
   updateSelectedUser,
   updateTheLocalUsersChanges,
+
 } = userSlice.actions;
 export default userSlice.reducer;

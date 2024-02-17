@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateTheLocalUsersChanges,
@@ -8,9 +8,16 @@ import Dropdown from "./Dropdown";
 const Table = () => {
   const users = useSelector((state) => state.users.users);
   const dispatch = useDispatch();
+ 
+    //made a copy of users (original array) to perform the actions of this before mutating the users directly.
 
-  //made a copy of users (original array) to perform the actions of this before mutating the users directly.
   const [localCheckboxChange, setLocalCheckboxChange] = useState([...users]);
+
+  useEffect(() => {
+    if (localStorage.getItem("table")) {
+      setLocalCheckboxChange(JSON.parse(localStorage.getItem("table")));
+    }
+  }, []);
 
   const handleCheckBoxChange = (userId, cardIndex) => {
     const updatedCheckBoxChange = localCheckboxChange.map((user) => {
@@ -27,11 +34,14 @@ const Table = () => {
 
     // Update the state with the modified array
     setLocalCheckboxChange(updatedCheckBoxChange);
+    dispatch(updateUserAccess({ userId, cardIndex }));
   };
 
   const handleAccessUpdate = () => {
     //Updates the original array.
     dispatch(updateTheLocalUsersChanges(localCheckboxChange));
+
+    var myData = localStorage.getItem("name");
   };
   return (
     <div className="container mx-auto px-4 py-8">
